@@ -9,7 +9,7 @@ exports.login = async(req, res) => {
 
 exports.signUp = async(req, res) => {
     try{
-        res.status(200).json("signUp");
+        console.log(req.body);
     }catch(error) {
         console.log(error);
     }

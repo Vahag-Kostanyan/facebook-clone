@@ -14,6 +14,7 @@ function Footer() {
             alignItems="center"
             justifyContent="center"
             padding="15px 0"
+            key={Math.random()}
         >
             <Flex
                 maxW="980px"
@@ -23,7 +24,7 @@ function Footer() {
             >
                 <Flex
                     alignItems="center"
-                    justifyContent={{lg: "center", md: "flex-start",  sm: "flex-start"}}
+                    justifyContent={{ lg: "center", md: "flex-start", sm: "flex-start" }}
                     gap="10px"
                     padding="10px 0"
                     flexWrap="wrap"
