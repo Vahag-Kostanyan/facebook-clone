@@ -9,3 +9,9 @@ export const getUser = () => async (dispatch) => {
 
     dispatch({type: "GET_DATA", payload: data.data})
 }
+
+export const SignUp = (userData) => async (dispatch) => {
+    const  res = await api.SignUp(userData);
+    const data = res.data;
+    console.log(data);
+}
