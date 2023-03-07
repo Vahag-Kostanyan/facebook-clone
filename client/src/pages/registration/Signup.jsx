@@ -125,28 +125,36 @@ function Signup({ isOpen, onClose }) {
         requiredValidate(false, e.target.name);
 
     }
-    const SignUpBtn = () => {
+    const SignUpBtn = async() => {
 
         let t = requiredValidate(true)
 
         if (t) return;
 
-        if(SignUpDates.day < 10){
+        if(SignUpDates.day.length == 1){
             SignUpDates.day = `0${SignUpDates.day}` 
         }
-        if(SignUpDates.mount < 10){
+        if(SignUpDates.mount.length == 1){
             SignUpDates.mount = `0${SignUpDates.mount}` 
         }
 
         SignUpDates.birthday = SignUpDates.year + "-" + SignUpDates.mount + "-" + SignUpDates.day;
 
-        dispatch(SignUp(SignUpDates))
+        
+        const backError = await SignUp({firstName: SignUpDates.firstName, lastName: SignUpDates.lastName, email: SignUpDates.mail, 
+            birthday: SignUpDates.birthday, gender: SignUpDates.gender, password: SignUpDates.password})
+            
+        if(backError.status == "ok"){
+            onClose();
+            alert("login for go your account")
+            return
+        }
 
+        document.querySelector(`.mail`).innerHTML = backError.massage;
     }
 
     return (
         <Modal
-            key={Math.random()}
             isCentered
             onClose={onClose}
             isOpen={isOpen}

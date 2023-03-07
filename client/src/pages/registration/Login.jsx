@@ -3,20 +3,34 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Footer from '../../components/footer/Footer';
 import facebookLogo from "../../imgs/facebook-logo.png"
+import { LogIn } from '../../redux/actions/user';
 import Signup from './Signup';
 
 
 function Login() {
 
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
     const dispatch = useDispatch();
     const { isOpen, onOpen, onClose } = useDisclosure()
-    // const users = useSelector((state) => state.user);
 
+    const logInHandler = async () => {
+        if(email.length < 4 && password.length < 4){
+            setError("The email must be minimum 3 symbols! \n \n The password must be minimum 3 symbols!")
+        }else if(email.length < 4){
+            setError("The email must be minimum 3 symbols!");
+        }else if(password.length < 4){
+            setError("The password must be minimum 3 symbols!");
+        }else{
+            const beckError = await LogIn({email, password});
+            setError(beckError);
+        }
+    }
 
     return (
         <Flex
             flexDirection="column"
-            key={Math.random()}
         >
             <Flex
                 gap="100px"
@@ -51,7 +65,7 @@ function Login() {
                     </Flex>
                     <Flex height="456px" width="396px" flexDirection="column">
                         <Flex
-                            height="350px"
+                            minH="350px"
                             width="100%"
                             backgroundColor="#fff"
                             boxShadow="0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);"
@@ -60,12 +74,22 @@ function Login() {
                             fontSize="20px"
                             position="relative"
                         >
-                            <form style={{ width: "100%", display: "flex", flexDirection: "column", gap: "15px" }}>
-                                <Input type="email" border="1px solid #dddfe2" width="100%" height="52px" fontSize="18px" placeholder='Email or phone number' />
-                                <Input type="password" border="1px solid #dddfe2" width="100%" height="52px" fontSize="18px" placeholder='Password' />
-                                <Button backgroundColor="#1877f2" borderRadius="6px" fontSize="20px" lineHeight="48px" padding="25px 0" color="#fff" _hover={{ backgroundColor: "#1b75e9" }}>
+                            <form style={{ width: "100%", display: "flex", flexDirection: "column", gap: "15px" }} autocomplete="on" >
+                                <Input
+                                    value={email} onChange={e => setEmail(e.target.value)}
+                                    type="email" border="1px solid #dddfe2" width="100%"
+                                    height="52px" fontSize="18px" placeholder='Email or phone number' />
+                                <Input
+                                    value={password} onChange={e => setPassword(e.target.value)}
+                                    type="password" border="1px solid #dddfe2" width="100%"
+                                    height="52px" fontSize="18px" placeholder='Password' />
+                                <Button
+                                    onClick={logInHandler}
+                                    backgroundColor="#1877f2" borderRadius="6px" fontSize="20px" lineHeight="48px" padding="25px 0" color="#fff"
+                                    _hover={{ backgroundColor: "#1b75e9" }}>
                                     Log in
                                 </Button>
+                                <Heading marginLeft="5px" textAlign="center" color="#ff0000" as="span" fontSize="14px" className='error'>{error}</Heading>
                                 <Flex>
                                     <Flex
                                         alignItems="center"
@@ -107,10 +131,11 @@ function Login() {
                 </Flex>
             </Flex>
             <Flex>
-                <Signup  isOpen = {isOpen} onClose = {onClose}/>
+                <Signup isOpen={isOpen} onClose={onClose} />
             </Flex>
-            <Footer  />
+            <Footer />
         </Flex>
+
     )
 }
 

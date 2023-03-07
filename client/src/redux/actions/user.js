@@ -1,17 +1,33 @@
 import * as api  from "../api/user";
 
-export const getUser = () => async (dispatch) => {
-    const res  = await api.getUser();
-    const data = res.date;
+
+export const getUser = (token) => async (dispatch) => {
+    const res  = await api.getUser(token);
+    const data = res.data;
+
+    console.log(data);
     if(data.status == "error"){
-        return data.data;
+        localStorage.removeItem("token")
+        window.location.assign("/login");
     }
 
-    dispatch({type: "GET_DATA", payload: data.data})
+    dispatch({type: "GET_USER", payload: data.data})
 }
 
-export const SignUp = (userData) => async (dispatch) => {
+
+export const SignUp = async (userData) => {
     const  res = await api.SignUp(userData);
     const data = res.data;
-    console.log(data);
+    return data;
+}
+
+export const LogIn = async (userData) => {
+    const  res = await api.LogIn(userData);
+    const data = res.data;
+    if(data.status == "ok"){
+        localStorage.setItem("token", data.token)
+        window.location.assign("/");
+    }
+
+    return data.massage
 }

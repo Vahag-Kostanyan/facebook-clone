@@ -9,9 +9,5 @@ const User = new mongoose.Schema(
         gender: { type: String, required: true },
         password: { type: String, required: true },
     },
-    { collation: "user" }
 )
-
-const model = mongoose.model("user", User);
-
-module.exports = model;
+module.exports = mongoose.model("user", User);

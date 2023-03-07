@@ -4,6 +4,8 @@ const registrationRoute = require("./registration");
 // groupe routes
 
 // ----- registration route
+
+
 router.use("/api", registrationRoute);
 
 // groupe routes
