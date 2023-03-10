@@ -4,6 +4,8 @@ import Login from "./pages/registration/Login";
 import { ChakraProvider, ColorModeProvider, CSSReset, extendTheme } from "@chakra-ui/react"
 import "./css/app.css"
 import Home from "./pages/home/Home";
+import Friends from "./pages/friends/Friends";
+import Groups from "./pages/groups/Groups";
 
 if(!localStorage.getItem("chakra-ui-color-mode")) {
   localStorage.setItem("chakra-ui-color-mode", "light");
@@ -25,6 +27,8 @@ function App() {
             <Routes>
               <Route path="/login" element={<Login />} />
               <Route path="/" element={<Home />} />
+              <Route path="/friends" element={<Friends />} />
+              <Route path="/groups" element={<Groups />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>

@@ -4,6 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../../components/navbar/Navbar';
 import { getUser } from '../../redux/actions/user';
+import HomeLeftSide from './HomeLeftSide';
+import HomeMiddleSide from './HomeMiddleSide';
+import HomeRightSide from './HomeRightSide';
 
 
 
@@ -37,9 +40,28 @@ function Home() {
             <Navbar />
             <Flex
                 marginTop="80px"
-            >
+                padding="0 10px 20px"
+                overflowX="hidden"
+                overflow="auto"
 
-                {user.email}
+            >
+                <Flex
+                    flex={3}
+                    display={{lg: "flex", md: "none"}}
+                >
+                    <HomeLeftSide/>
+                </Flex>
+                <Flex
+                    flex={6.5}
+                    height="1000px"
+                >
+                    <HomeMiddleSide/>
+                </Flex>
+                <Flex
+                    flex={2.5}
+                >
+                    <HomeRightSide/>
+                </Flex>
             </Flex>
         </Flex>
     )
