@@ -47,7 +47,7 @@ function Home() {
             >
                 <Flex
                     flex={3}
-                    display={{lg: "flex", md: "none"}}
+                    display={{xl: "flex", lg: "none", md: "none", sm: "none"}}
                 >
                     <HomeLeftSide/>
                 </Flex>
@@ -58,6 +58,7 @@ function Home() {
                     <HomeMiddleSide/>
                 </Flex>
                 <Flex
+                    display={{lg: "flex", md: "none", sm: "none"}}
                     flex={2.5}
                 >
                     <HomeRightSide/>

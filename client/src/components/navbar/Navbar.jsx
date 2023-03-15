@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Flex, Image, Input } from "@chakra-ui/react"
 import facebookIcon from "../../imgs/facebook-icon.png"
 import { BsSearch } from "@react-icons/all-files/bs/BsSearch";
@@ -13,14 +13,21 @@ import MenuIcon from '../../svgs/navbarIcons/MenuIcon';
 import MessengerIcon from '../../svgs/navbarIcons/MessengerIcon';
 import NotificationIcon from '../../svgs/navbarIcons/NotificationIcon';
 import profileImage from "../../imgs/profile.png"
+import InactiveModal from '../modals/InactiveModal';
+import NavbarProfileModal from '../modals/NavbarProfileModal';
 
 
 function Navbar() {
 
+    const [modalStatus, setModalStatus] = useState(false)
     const location = useLocation();
 
     const route = location.pathname;
 
+
+    const changeModalStatus = () => {
+        setModalStatus(!modalStatus);
+    }
 
     return (
         <Flex
@@ -32,6 +39,7 @@ function Navbar() {
             borderBottom="1px solid #f0f2f5"
             boxShadow="0px 3px 6px #dbdbdb"
             width="100%"
+            zIndex={999}
         >
             <Flex
                 flex={3}
@@ -40,7 +48,9 @@ function Navbar() {
                 gap="10px"
                 position="relative"
             >
+                <Link to={"/"}>
                 <Image src={facebookIcon} width="35px" height="35px" />
+                </Link>
                 <BsSearch
                     style={{
                         position: "absolute",
@@ -155,36 +165,36 @@ function Navbar() {
                 justifyContent="flex-end"
                 gap={2.5}
             >
-                <Flex  
-                    display={{"xl": "flex", lg: "none", md: "none", sm: "none"}}
+                <Flex
+                    display={{ "xl": "flex", lg: "none", md: "none", sm: "none" }}
                 >
-                {route == "/friends" ? (
-                    <Flex
-                        cursor="pointer"
-                        padding="8px 15px"
-                        borderRadius={30}
-                        backgroundColor="#e7f3ff"
-                        fontSize="14px"
-                        color="#3385f4"
-                        fontWeight={600}
-                    >
-                        Find Friends
-                    </Flex>
-                ) : (
-                    <Link to="/friends" >
+                    {route == "/friends" ? (
                         <Flex
                             cursor="pointer"
                             padding="8px 15px"
                             borderRadius={30}
-                            backgroundColor="#e4e6eb"
-                            fontSize="15px"
-                            color="#434445"
+                            backgroundColor="#e7f3ff"
+                            fontSize="14px"
+                            color="#3385f4"
                             fontWeight={600}
                         >
                             Find Friends
                         </Flex>
-                    </Link>
-                )}
+                    ) : (
+                        <Link to="/friends" >
+                            <Flex
+                                cursor="pointer"
+                                padding="8px 15px"
+                                borderRadius={30}
+                                backgroundColor="#e4e6eb"
+                                fontSize="15px"
+                                color="#434445"
+                                fontWeight={600}
+                            >
+                                Find Friends
+                            </Flex>
+                        </Link>
+                    )}
                 </Flex>
 
                 <Flex
@@ -218,7 +228,8 @@ function Navbar() {
                 </Flex>
                 <Flex
                     cursor="pointer"
-    >
+                    onClick={changeModalStatus}
+                >
                     <Image
                         borderRadius={50}
                         width="40px"
@@ -226,6 +237,11 @@ function Navbar() {
                         src={profileImage}
                     ></Image>
                 </Flex>
+            </Flex>
+
+            <Flex display={modalStatus ? "flex" : "none"}>
+                <InactiveModal changeModalStatus = {changeModalStatus} />
+                <NavbarProfileModal/>
             </Flex>
         </Flex>
     )

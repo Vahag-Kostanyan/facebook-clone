@@ -6,6 +6,7 @@ import "./css/app.css"
 import Home from "./pages/home/Home";
 import Friends from "./pages/friends/Friends";
 import Groups from "./pages/groups/Groups";
+import Profile from "./pages/profile/Profile";
 
 if(!localStorage.getItem("chakra-ui-color-mode")) {
   localStorage.setItem("chakra-ui-color-mode", "light");
@@ -29,6 +30,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/friends" element={<Friends />} />
               <Route path="/groups" element={<Groups />} />
+              <Route path="/profile" element={<Profile/>} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>

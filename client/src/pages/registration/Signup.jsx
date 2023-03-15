@@ -6,9 +6,8 @@ import { SignUp } from '../../redux/actions/user';
 
 function Signup({ isOpen, onClose }) {
 
-    const dispatch = useDispatch();
-
-    const SignUpDates = {
+    const [check, setCheck] = useState(false);
+    const [datas, setDatas] = useState({
         firstName: "",
         lastName: "",
         mail: "",
@@ -16,11 +15,13 @@ function Signup({ isOpen, onClose }) {
         gender: "",
         password: "",
         day: "1",
-        mount: "1",
+        month: "1",
         year: "2023",
-    };
-    const mountaArr = [
-         "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Aug", "Sep", "Oct", "Nov", "Dec"
+    })
+    const dispatch = useDispatch();
+
+    const monthaArr = [
+        "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Aug", "Sep", "Oct", "Nov", "Dec"
     ];
 
     const dayArr = [];
@@ -38,12 +39,12 @@ function Signup({ isOpen, onClose }) {
     const requiredValidate = (all = false, field = "") => {
         if (all) {
             let t = false;
-            for (let SignUpDate in SignUpDates) {
-                if (SignUpDate == "birthday" || SignUpDate == "day" || SignUpDate == "mount" || SignUpDate == "year") {
+            for (let SignUpDate in datas) {
+                if (SignUpDate == "birthday" || SignUpDate == "day" || SignUpDate == "month" || SignUpDate == "year") {
                     continue;
                 }
 
-                if (SignUpDates[SignUpDate].length <= 3) {
+                if (datas[SignUpDate].length <= 3) {
                     if (SignUpDate == "gender") {
                         t = true;
                         const gender = document.querySelectorAll(`.genderContainer`)
@@ -80,7 +81,7 @@ function Signup({ isOpen, onClose }) {
             }
             return t;
         } else {
-            if (field == "birthday" || field == "day" || field == "mount" || field == "year") return;
+            if (field == "birthday" || field == "day" || field == "month" || field == "year") return;
 
             let item = document.querySelector(`[name=${field}]`);
 
@@ -121,30 +122,40 @@ function Signup({ isOpen, onClose }) {
 
 
     const SignUpHandler = (e) => {
-        SignUpDates[e.target.name] = e.target.value;
-        requiredValidate(false, e.target.name);
+        setDatas(item => {
+            return { ...item, [e.target.name]: e.target.value }
+        })
+
+        if (check) {
+            requiredValidate(false, e.target.name);
+        }
 
     }
-    const SignUpBtn = async() => {
+    const SignUpBtn = async () => {
 
+        setCheck(true)
         let t = requiredValidate(true)
 
         if (t) return;
 
-        if(SignUpDates.day.length == 1){
-            SignUpDates.day = `0${SignUpDates.day}` 
+
+
+        if (datas.day.length == 1) {
+            datas.day = `0${datas.day}`
         }
-        if(SignUpDates.mount.length == 1){
-            SignUpDates.mount = `0${SignUpDates.mount}` 
+        if (datas.month.length == 1) {
+            datas.month = `0${datas.month}`
         }
 
-        SignUpDates.birthday = SignUpDates.year + "-" + SignUpDates.mount + "-" + SignUpDates.day;
+        datas.birthday = datas.year + "-" + datas.month + "-" + datas.day;
 
-        
-        const backError = await SignUp({firstName: SignUpDates.firstName, lastName: SignUpDates.lastName, email: SignUpDates.mail, 
-            birthday: SignUpDates.birthday, gender: SignUpDates.gender, password: SignUpDates.password})
-            
-        if(backError.status == "ok"){
+
+        const backError = await SignUp({
+            firstName: datas.firstName, lastName: datas.lastName, email: datas.mail,
+            birthday: datas.birthday, gender: datas.gender, password: datas.password
+        })
+
+        if (backError.status == "ok") {
             onClose();
             alert("login for go your account")
             return
@@ -183,6 +194,7 @@ function Signup({ isOpen, onClose }) {
                             >
                                 <Flex gap="3px" flexDirection="column">
                                     <Input
+                                        value={datas.firstName}
                                         onChange={SignUpHandler}
                                         name="firstName"
                                         placeholder='First name' border="1px solid #d6d9dd" background="#f5f6f7"
@@ -191,6 +203,7 @@ function Signup({ isOpen, onClose }) {
                                 </Flex>
                                 <Flex gap="3px" flexDirection="column">
                                     <Input
+                                        value={datas.lastName}
                                         onChange={SignUpHandler}
                                         name="lastName"
                                         placeholder='Last name' border="1px solid #d6d9dd"
@@ -201,6 +214,7 @@ function Signup({ isOpen, onClose }) {
                             </Flex>
                             <Flex gap="3px" flexDirection="column">
                                 <Input
+                                    value={datas.mail}
                                     onChange={SignUpHandler}
                                     name="mail"
                                     placeholder='Email' border="1px solid #d6d9dd" background="#f5f6f7" focusBorderColor="#d6d9dd"
@@ -209,6 +223,7 @@ function Signup({ isOpen, onClose }) {
                             </Flex>
                             <Flex gap="3px" flexDirection="column">
                                 <Input
+                                    value={datas.password}
                                     onChange={SignUpHandler}
                                     name="password"
                                     type="password"
@@ -231,32 +246,50 @@ function Signup({ isOpen, onClose }) {
                                 >
                                     <Select
                                         onChange={SignUpHandler}
-                                        name="mount"
+                                        name="month"
                                         border="1px solid #d6d9dd" focusBorderColor="#d6d9dd">
-                                        {mountaArr.map((item, index) => {
-                                            return (
-                                                <option value={index}>{item}</option>
-                                            )
+                                        {monthaArr.map((item, index) => {
+                                            if (index + 1 == datas.month) {
+                                                return (
+                                                    <option value={index + 1} selected>{item}</option>
+                                                )
+                                            } else {
+                                                return (
+                                                    <option value={index + 1}>{item}</option>
+                                                )
+                                            }
                                         })}
                                     </Select>
                                     <Select
                                         onChange={SignUpHandler}
                                         name="day"
                                         border="1px solid #d6d9dd" focusBorderColor="#d6d9dd">
-                                        {dayArr.map(item => {
-                                            return (
-                                                <option value={item}>{item}</option>
-                                            )
+                                        {dayArr.map((item, index) => {
+                                            if (index + 1 == datas.day) {
+                                                return (
+                                                    <option value={index + 1} selected>{item}</option>
+                                                )
+                                            } else {
+                                                return (
+                                                    <option value={index + 1}>{item}</option>
+                                                )
+                                            }
                                         })}
                                     </Select>
                                     <Select
                                         onChange={SignUpHandler}
                                         name="year"
                                         border="1px solid #d6d9dd" focusBorderColor="#d6d9dd">
-                                        {yearArr.map(item => {
-                                            return (
-                                                <option value={item}>{item}</option>
-                                            )
+                                        {yearArr.map((item, index) => {
+                                            if (index == datas.year) {
+                                                return (
+                                                    <option value={index} selected>{item}</option>
+                                                )
+                                            } else {
+                                                return (
+                                                    <option value={index}>{item}</option>
+                                                )
+                                            }
                                         })}
                                     </Select>
                                 </Flex>
@@ -271,7 +304,7 @@ function Signup({ isOpen, onClose }) {
                                 <Flex
 
                                 >
-                                    <RadioGroup>
+                                    <RadioGroup value={datas.gender}>
                                         <Flex gap="3px" flexDirection="column">
                                             <Stack
                                                 direction='flex'
@@ -285,7 +318,9 @@ function Signup({ isOpen, onClose }) {
                                                         <Radio
                                                             onChange={SignUpHandler}
                                                             name="gender"
-                                                            id='genderFemale' value='male'></Radio>
+                                                            id='genderFemale' value='male' 
+
+                                                            ></Radio>
                                                     </Flex>
                                                 </label>
                                                 <label for="genderMail">

@@ -1,4 +1,4 @@
-import { Flex, Heading, Image } from '@chakra-ui/react'
+import { Flex, Heading, Image, useMediaQuery } from '@chakra-ui/react'
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -55,6 +55,7 @@ const itemsArr = [
 
 
 function HomeLeftSide() {
+    const [isHeightThan800] = useMediaQuery('(min-height: 800px)')
 
 
     const itemStyle = {
@@ -77,10 +78,11 @@ function HomeLeftSide() {
         <Flex
             flexDirection="column"
             justifyContent="space-between"
-            padding=" 0 0 10px 0"
+            padding={isHeightThan800 ? " 0 0 10px 0" : " 0 0 50px 0"}
             position="fixed"
-            width="100%"
-            minH="90vh"
+            height="90vh"
+            overflowY="auto"
+
         >
             <Flex
                 alignItems="flex-start"
@@ -187,6 +189,7 @@ function HomeLeftSide() {
                 })}
                 <Flex
                     sx={itemStyle}
+                    padding
                 >
                     <Flex
                         fontSize="20px"
