@@ -1,12 +1,18 @@
 import { Flex } from '@chakra-ui/react'
 import React from 'react'
 import CreatePost from '../../../components/CreatePost'
+import ProfileAboutYou from '../../../components/ProfileAboutYou'
+import ViewPost from '../../../components/ViewPost'
 import ProfileFriends from './ProfileFriends'
 import ProfileInfo from './ProfileInfo'
 import ProfilePhotos from './ProfilePhotos'
 import ProfileSuggestedBlock from './ProfileSuggestedBlock'
 
 function ProfileLastSide() {
+
+
+ 
+
     return (
         <Flex
             alignItems="center"
@@ -43,8 +49,13 @@ function ProfileLastSide() {
                         <Flex
                             flex={7}
                             flexDirection="column"
+                            gap={6}
                         >
                             <CreatePost massage = "from profile"/>
+
+                            <ViewPost/>
+
+                            <ProfileAboutYou/>
                         </Flex>
                     </Flex>
                 </Flex>

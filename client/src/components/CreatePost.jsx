@@ -104,7 +104,8 @@ function CreatePost({ massage }) {
 
             </Flex>
 
-        </Flex>)
+        </Flex>
+        )
 }
 
 export default CreatePost

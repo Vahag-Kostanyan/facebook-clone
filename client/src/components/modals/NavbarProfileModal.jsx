@@ -124,7 +124,6 @@ function NavbarProfileModal() {
             </Flex>
             <Flex
                 flexDirection="column"
-
             >
                 {ModalItemArr.map(item => {
                     return (
