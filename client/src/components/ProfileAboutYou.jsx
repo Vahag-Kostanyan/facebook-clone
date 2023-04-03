@@ -6,6 +6,7 @@ import Bear from "../imgs/whiteBear.png"
 import { AiOutlineLike } from "@react-icons/all-files/ai/AiOutlineLike"
 import { RiShareForwardLine } from "@react-icons/all-files/ri/RiShareForwardLine"
 import { ChatIcon } from '@chakra-ui/icons'
+import Avatar from './modals/profile/Avatar'
 
 function ProfileAboutYou() {
 
@@ -48,13 +49,7 @@ function ProfileAboutYou() {
                     <Flex
                         gap={2}
                     >
-                        <Image
-                            src={profile}
-                            width="36px"
-                            height="36px"
-                            borderRadius={50}
-                        >
-                        </Image>
+                        <Avatar width={"40px"} height={"40px"} />
                         <Flex
                             flexDirection="column"
                         >
@@ -139,13 +134,8 @@ function ProfileAboutYou() {
                 gap={1}
             >
                 <Flex>
-                    <Image
-                        src={profile}
-                        width="35px"
-                        height="35px"
-                        borderRadius={50}
-                    >
-                    </Image>
+                    <Avatar width={"40px"} height={"40px"} />
+
                 </Flex>
                 <Flex
                     flexDirection="column"

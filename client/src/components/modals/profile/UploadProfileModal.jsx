@@ -4,7 +4,8 @@ import { TiCameraOutline } from "@react-icons/all-files/ti/TiCameraOutline"
 import { GiNinjaHead } from "@react-icons/all-files/gi/GiNinjaHead"
 import ModalCorner from '../../../svgs/profile/ModalCorner'
 
-function UploadProfileModal() {
+function UploadProfileModal({onOpen}) {
+
     return (
         <Flex
             position={"absolute"}
@@ -43,6 +44,7 @@ function UploadProfileModal() {
                         backgroundColor: "#e4e6eb"
                     }}
                     cursor="pointer"
+                    onClick={onOpen}
                 >
                     <TiCameraOutline color='#606163' size={30} />
                     Add photo

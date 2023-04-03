@@ -125,7 +125,7 @@ function Signup({ isOpen, onClose }) {
         setDatas(item => {
             return { ...item, [e.target.name]: e.target.value }
         })
-
+        
         if (check) {
             requiredValidate(false, e.target.name);
         }
@@ -283,11 +283,11 @@ function Signup({ isOpen, onClose }) {
                                         {yearArr.map((item, index) => {
                                             if (index == datas.year) {
                                                 return (
-                                                    <option value={index} selected>{item}</option>
+                                                    <option value={item} selected>{item}</option>
                                                 )
                                             } else {
                                                 return (
-                                                    <option value={index}>{item}</option>
+                                                    <option value={item}>{item}</option>
                                                 )
                                             }
                                         })}

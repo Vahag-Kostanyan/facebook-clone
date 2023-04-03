@@ -1,19 +1,23 @@
-import { Flex, Image, Input } from '@chakra-ui/react'
+import { Flex, Image, Input, useDisclosure } from '@chakra-ui/react'
 import React, { useState } from 'react'
-import profileImage from "../../../imgs/profileImage2.png"
 import InactiveModal from "../../../components/modals/InactiveModal"
 import NavbarProfileModal from "../../../components/modals/NavbarProfileModal"
 import UploadProfileModal from '../../../components/modals/profile/UploadProfileModal'
+import AddPhotoProfileModal from '../../../components/modals/profile/AddPhotoProfileModal'
+import { useSelector } from 'react-redux'
+import Avatar from '../../../components/modals/profile/Avatar'
 
 
 function ProfileImage() {
 
     const [uploadPhotoModal, setUploadPhotoModal] = useState(false);
+    const { isOpen, onOpen, onClose } = useDisclosure()
+
+
 
 
     const uploadPhotoHandler = () => {
         setUploadPhotoModal(!uploadPhotoModal);
-        console.log(uploadPhotoModal);
     }
     return (
         <Flex>
@@ -26,11 +30,9 @@ function ProfileImage() {
                 top="430px"
                 backgroundColor="#fff"
                 cursor="pointer"
+                onClick={uploadPhotoHandler}
             >
-                    <Image onClick={uploadPhotoHandler} borderRadius={"50%"} width="100%" src={profileImage} ></Image>
-                {/* <label for="uploadProfile"> */}
-                {/* </label> */}
-                {/* <Input type="file" display={"none"} id="uploadProfile" onClick={uploadPhotoHandler} /> */}
+                <Avatar width={"168px"} height={"158px"}/>
             </Flex>
             <Flex
                 borderRadius={"50%"}
@@ -53,9 +55,10 @@ function ProfileImage() {
             </Flex>
 
             <Flex display={uploadPhotoModal ? "flex" : "none"}>
-                    <InactiveModal changeModalStatus = {uploadPhotoHandler}/>
-                    <UploadProfileModal/>
+                <InactiveModal changeModalStatus={uploadPhotoHandler} />
+                <UploadProfileModal onOpen={onOpen} />
             </Flex>
+            <AddPhotoProfileModal onOpen={onOpen} isOpen={isOpen} onClose={onClose} />
         </Flex>
     )
 }

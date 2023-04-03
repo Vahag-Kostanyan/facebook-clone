@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom';
 import profile from "../../imgs/profile.png"
 import { ChevronRightIcon } from "@chakra-ui/icons"
+import Avatar from './profile/Avatar';
 
 
 function NavbarProfileModal() {
@@ -88,14 +89,7 @@ function NavbarProfileModal() {
                         <Flex
                             sx={itemStyle}
                         >
-                            <Image
-                                src={profile}
-                                width="36px"
-                                height="36px"
-                                borderRadius={50}
-                            >
-                            </Image>
-
+                                <Avatar width={"36px"} height={"36px"}/>
                             <Heading
                                 as={"p"}
                                 fontSize="16px"

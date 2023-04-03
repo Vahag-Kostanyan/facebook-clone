@@ -3,12 +3,14 @@ import { Button, Flex, Heading } from '@chakra-ui/react'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Navbar from '../../components/navbar/Navbar'
+import { getImages } from '../../redux/actions/photo'
 import { getUser } from '../../redux/actions/user'
 import ProfileFirstSide from './profileFirstSide/ProfileFirstSide'
-import ProfileLastSide from './ProfileLastCide/ProfileLastSide'
+import ProfileLastSide from './ProfileLastSide/ProfileLastSide'
 
 
 function Profile() {
+
 
     const dispatch = useDispatch()
     const user = useSelector(state => state.user)
@@ -17,7 +19,6 @@ function Profile() {
         const token = localStorage.getItem("token");
 
         if (!token) {
-            console.log(11);
             window.location.assign("/login")
         }
 

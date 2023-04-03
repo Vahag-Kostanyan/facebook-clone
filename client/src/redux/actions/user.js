@@ -5,7 +5,6 @@ export const getUser = (token) => async (dispatch) => {
     const res  = await api.getUser(token);
     const data = res.data;
 
-    console.log(data);
     if(data.status == "error"){
         localStorage.removeItem("token")
         window.location.assign("/login");

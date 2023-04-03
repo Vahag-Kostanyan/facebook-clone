@@ -6,6 +6,7 @@ import profile from "../../imgs/profile.png"
 import mostRecent from "../../imgs/mostRecent.png"
 import facebookeIcon from "../../imgs/facebook-icon.png"
 import HomeSidebarIconDown from "../../svgs/home/HomeSidebarIconDown"
+import Avatar from '../../components/modals/profile/Avatar'
 
 
 const itemsArr = [
@@ -94,14 +95,7 @@ function HomeLeftSide() {
                     <Flex
                         sx={itemStyle}
                     >
-                        <Image
-                            src={profile}
-                            width="36px"
-                            height="36px"
-                            borderRadius={50}
-                        >
-                        </Image>
-
+                        <Avatar width={"36px"} height={"36px"} />
                         <Heading
                             as={"p"}
                             fontSize="16px"
@@ -209,7 +203,7 @@ function HomeLeftSide() {
                 </Flex>
 
             </Flex>
-            <Flex 
+            <Flex
                 maxW="340px"
                 color="#6d6f73"
                 fontSize="14px"

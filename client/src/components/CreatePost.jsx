@@ -5,6 +5,7 @@ import photo from "../imgs/photo.png"
 import feeling from "../imgs/feeling.png"
 import lifeEvent from "../imgs/lifeEvent.png"
 import profile from "../imgs/profile.png"
+import Avatar from "../components/modals/profile/Avatar"
 
 function CreatePost({ massage }) {
     const style = {
@@ -44,13 +45,7 @@ function CreatePost({ massage }) {
                 gap={4}
                 cursor="pointer"
             >
-                <Image
-                    src={profile}
-                    width="36px"
-                    height="36px"
-                    borderRadius={50}
-                >
-                </Image>
+                <Avatar width={"40px"} height={"40px"} />
                 <Flex
                     width="100%"
                     backgroundColor="#f0f2f5"
@@ -105,7 +100,7 @@ function CreatePost({ massage }) {
             </Flex>
 
         </Flex>
-        )
+    )
 }
 
 export default CreatePost

@@ -7,7 +7,7 @@ const User = new mongoose.Schema(
         email: { type: String, required: true, unique: true },
         birthday: { type: Date, required: true },
         gender: { type: String, required: true },
-        profile: { data: Buffer, contentType: String },
+        avatar: {data: Buffer, contentType: String, required: false},
         password: { type: String, required: true },
     },
 )

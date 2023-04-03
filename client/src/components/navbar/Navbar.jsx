@@ -15,6 +15,7 @@ import NotificationIcon from '../../svgs/navbarIcons/NotificationIcon';
 import profileImage from "../../imgs/profile.png"
 import InactiveModal from '../modals/InactiveModal';
 import NavbarProfileModal from '../modals/NavbarProfileModal';
+import Avatar from '../modals/profile/Avatar';
 
 
 function Navbar() {
@@ -49,7 +50,7 @@ function Navbar() {
                 position="relative"
             >
                 <Link to={"/"}>
-                <Image src={facebookIcon} width="35px" height="35px" />
+                    <Image src={facebookIcon} width="35px" height="35px" />
                 </Link>
                 <BsSearch
                     style={{
@@ -230,18 +231,14 @@ function Navbar() {
                     cursor="pointer"
                     onClick={changeModalStatus}
                 >
-                    <Image
-                        borderRadius={50}
-                        width="40px"
-                        height="40px"
-                        src={profileImage}
-                    ></Image>
+                    <Avatar width={"40px"} height={"40px"} />
+
                 </Flex>
             </Flex>
 
             <Flex display={modalStatus ? "flex" : "none"}>
-                <InactiveModal changeModalStatus = {changeModalStatus} />
-                <NavbarProfileModal/>
+                <InactiveModal changeModalStatus={changeModalStatus} />
+                <NavbarProfileModal />
             </Flex>
         </Flex>
     )

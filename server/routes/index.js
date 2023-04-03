@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const registrationRoute = require("./registration");
+const photoRoute = require("./photo");
 
 // groupe routes
 
@@ -7,6 +8,7 @@ const registrationRoute = require("./registration");
 
 
 router.use("/api", registrationRoute);
+router.use("/api/photo", photoRoute);
 
 // groupe routes
 
