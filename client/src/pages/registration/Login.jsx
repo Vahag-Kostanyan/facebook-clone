@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Footer from '../../components/footer/Footer';
 import facebookLogo from "../../imgs/facebook-logo.png"
 import { LogIn } from '../../redux/actions/user';
-import Signup from './Signup';
+import SignUpComponent from './SignUpComponent';
 
 
 function Login() {
@@ -74,7 +74,7 @@ function Login() {
                             fontSize="20px"
                             position="relative"
                         >
-                            <form style={{ width: "100%", display: "flex", flexDirection: "column", gap: "15px" }} autocomplete="on" >
+                            <form style={{ width: "100%", display: "flex", flexDirection: "column", gap: "15px" }} autoComplete="on" >
                                 <Input
                                     value={email} onChange={e => setEmail(e.target.value)}
                                     type="email" border="1px solid #dddfe2" width="100%"
@@ -131,7 +131,7 @@ function Login() {
                 </Flex>
             </Flex>
             <Flex>
-                <Signup isOpen={isOpen} onClose={onClose} />
+                <SignUpComponent isOpen={isOpen} onClose={onClose} />
             </Flex>
             <Footer />
         </Flex>

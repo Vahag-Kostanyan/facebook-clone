@@ -19,7 +19,6 @@ function Home() {
         const token = localStorage.getItem("token");
 
         if (!token) {
-            console.log(11);
             window.location.assign("/login")
         }
 
@@ -29,7 +28,6 @@ function Home() {
 
     const user = useSelector(state => state.user);
 
-    console.log(user);
     return (
         <Flex
             flexDirection="column"

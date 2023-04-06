@@ -44,9 +44,9 @@ function Footer() {
                     borderTop="1px solid #dadde1"
                     padding="10px 0"
                 >
-                    {footerLinks.map(item => {
+                    {footerLinks.map((item, index) => {
                         return (
-                            <Link color='#8a8d91' fontSize="12px">{item}</Link>
+                            <Link key={index} color='#8a8d91' fontSize="12px">{item}</Link>
                         )
                     })}
                 </Flex>

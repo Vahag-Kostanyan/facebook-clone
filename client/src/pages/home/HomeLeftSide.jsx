@@ -2,62 +2,18 @@ import { Flex, Heading, Image, useMediaQuery } from '@chakra-ui/react'
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import profile from "../../imgs/profile.png"
 import mostRecent from "../../imgs/mostRecent.png"
-import facebookeIcon from "../../imgs/facebook-icon.png"
+import facebookIcon from "../../imgs/facebook-icon.png"
 import HomeSidebarIconDown from "../../svgs/home/HomeSidebarIconDown"
 import Avatar from '../../components/modals/profile/Avatar'
+import { homeLeftSideItemArr } from '../../helpers/Home'
 
 
-const itemsArr = [
-    {
-        text: "Groups",
-        position: "0 -74px",
-        route: "/groups",
-        url: "url('https://static.xx.fbcdn.net/rsrc.php/v3/yU/r/BHDNlEdwMgn.png')"
-    },
-    {
-        text: "Marketplace",
-        position: "0px -407px",
-        route: "",
-        url: "url('https://static.xx.fbcdn.net/rsrc.php/v3/yU/r/BHDNlEdwMgn.png')"
-    },
-    {
-        text: "Watch",
-        position: "0px -518px",
-        route: "",
-        url: "url('https://static.xx.fbcdn.net/rsrc.php/v3/yU/r/BHDNlEdwMgn.png')"
-    },
-    {
-        text: "Memories",
-        position: "0px -444px",
-        route: "",
-        url: "url('https://static.xx.fbcdn.net/rsrc.php/v3/yU/r/BHDNlEdwMgn.png')"
-    },
-    {
-        text: "Saved",
-        position: "0px -185px",
-        route: "",
-        url: "url('https://static.xx.fbcdn.net/rsrc.php/v3/yU/r/BHDNlEdwMgn.png')"
-    },
-    {
-        text: "Pages",
-        position: "0px -111px",
-        route: "",
-        url: "url('https://static.xx.fbcdn.net/rsrc.php/v3/yU/r/BHDNlEdwMgn.png')"
-    },
-    {
-        text: "Pages",
-        position: "0px 0px",
-        route: "",
-        url: "url('https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/yjJFVz39oV-.png')"
-    }
-]
+const itemsArr = homeLeftSideItemArr();
 
 
 function HomeLeftSide() {
     const [isHeightThan800] = useMediaQuery('(min-height: 800px)')
-
 
     const itemStyle = {
         gap: "3",
@@ -145,7 +101,7 @@ function HomeLeftSide() {
                         sx={itemStyle}
                     >
                         <Image
-                            src={facebookeIcon}
+                            src={facebookIcon}
                             width="30px"
                             height="30px"
                             borderRadius={50}
@@ -159,9 +115,9 @@ function HomeLeftSide() {
                         >Welcom</Heading>
                     </Flex>
                 </Link>
-                {itemsArr.map(item => {
+                {itemsArr.map((item, index) => {
                     return (
-                        <Link style={{ width: "100%" }} to={item.route} >
+                        <Link key={index} style={{ width: "100%" }} to={item.route} >
                             <Flex
                                 sx={itemStyle}
                             >

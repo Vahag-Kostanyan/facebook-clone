@@ -7,7 +7,6 @@ function Avatar({ width, height }) {
 
     const user = useSelector(state => state.user);
 
-    console.log(user);
     return (
         <Image
             borderRadius={"50%"}    

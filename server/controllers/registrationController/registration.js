@@ -1,22 +1,29 @@
 const User = require("../../models/user")
 const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt")
-
+const bcrypt = require("bcrypt");
+const { loginValidation, signUpValidation } = require("../../validations/registrationValidate");
+const { verifyUserToken } = require("../../helper");
 
 exports.login = async (req, res) => {
     try {
+        const { error, value } = loginValidation.validate(req.body);
+
+        if (error) {
+            return res.json({ status: "error", massage: error.details[0].message })
+        }
+
         const user = await User.findOne({
             email: req.body.email,
         });
 
         if (!user) {
-           return res.json({ status: "error", massage: "User with this email not found!" })
+            return res.json({ status: "error", massage: "User with this email not found!", for: "email" })
         }
         checkPassword = await bcrypt.compare(req.body.password, user.password);
 
 
-        if(!checkPassword){
-           return res.json({ status: "error", massage: "Incorrect password" })
+        if (!checkPassword) {
+            return res.json({ status: "error", massage: "Incorrect password", for: "email" })
         }
 
         const name = user.firstName + " " + user.lastName;
@@ -35,6 +42,23 @@ exports.login = async (req, res) => {
 
 exports.signUp = async (req, res) => {
     try {
+
+        
+        const { error, value } = signUpValidation.validate(req.body);
+
+        if (error) {
+            return res.json({ status: "error", massage: error.details[0].message })
+        }
+
+        if (error) {
+            massage = [];
+            error.details.forEach(item => {
+                massage.push(item.message);
+            })
+            console.log({ status: "error", massage: massage });
+            return res.json({ status: "error", massage: massage })
+        }
+
         const checkUser = await User.findOne({ email: req.body.email });
 
         if (checkUser) {
@@ -56,14 +80,16 @@ exports.signUp = async (req, res) => {
 exports.getUser = async (req, res) => {
     const token = req.headers['x-access-token']
     try {
-        const decoded = await jwt.verify(token, process.env.JWT_SECRET);
-        const email = decoded.email;
-        
-        const user = await User.findOne({email: email});
+        const email = await verifyUserToken(token);
 
-        if(!user) {
-            return res.json({status: "error", massage: "User not found"})
+        const user = await User.findOne({ email: email }).select("-password");
+
+
+        if (!user) {
+            return res.json({ status: "error", massage: "User not found" })
         }
+
+
         res.json({ status: "ok", data: user })
     } catch (error) {
         console.log(error);

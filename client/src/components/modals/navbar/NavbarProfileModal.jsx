@@ -1,10 +1,9 @@
 import React from 'react'
-import { Flex, Heading, Image } from "@chakra-ui/react"
+import { Flex, Heading } from "@chakra-ui/react"
 import { useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom';
-import profile from "../../imgs/profile.png"
 import { ChevronRightIcon } from "@chakra-ui/icons"
-import Avatar from './profile/Avatar';
+import Avatar from '../profile/Avatar';
 
 
 function NavbarProfileModal() {
@@ -119,9 +118,10 @@ function NavbarProfileModal() {
             <Flex
                 flexDirection="column"
             >
-                {ModalItemArr.map(item => {
+                {ModalItemArr.map((item, index) => {
                     return (
                         <Flex
+                            key={index}
                             justifyContent="space-between"
                             padding={1.5}
                             width="100%"

@@ -1,14 +1,30 @@
 import { Flex } from '@chakra-ui/react'
-import React from 'react'
+import React, { useState } from 'react'
+import AddCoverPhotoModal from '../../../components/modals/profile/AddCoverPhotoModal';
+import InactiveModal from "../../../components/modals/InactiveModal"
+import { useSelector } from 'react-redux';
 
 function CoverPhoto() {
+  const [coverPhotoModal, setCoverPhotoModal] = useState(false);
+
+  const changeCoverPhotoModalStatus = () => {
+    setCoverPhotoModal(!coverPhotoModal);
+  }
+
+
+  const user = useSelector(state => state.user)
   return (
     <Flex
       height="460px"
-      backgroundColor="#f0f2f5"
+      backgroundColor={user.cover ? "" :"#f0f2f5"}
+      backgroundImage={user.cover ? user.cover : ""}
+      backgroundRepeat="no-repeat"
+      backgroundSize={"cover"}
       width="100%"
       borderBottomRadius={10}
       alignItems="flex-end"
+      onClick={user.cover ? "" : changeCoverPhotoModalStatus}
+      cursor={"pointer"}
     >
       <Flex
         backgroundImage={"linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.6))"}
@@ -29,6 +45,7 @@ function CoverPhoto() {
           gap={2}
           fontSize="15"
           fontWeight="600"
+          onClick={changeCoverPhotoModalStatus}
         >
           <i data-visualcompletion="css-img"
             style={{
@@ -41,8 +58,12 @@ function CoverPhoto() {
         </Flex>
 
       </Flex>
-
-    </Flex>)
+      <Flex display={coverPhotoModal ? "flex" : "none"}>
+        <InactiveModal changeModalStatus={changeCoverPhotoModalStatus}/>
+        <AddCoverPhotoModal changeModalStatus={changeCoverPhotoModalStatus} />
+      </Flex>
+    </Flex>
+  )
 }
 
 export default CoverPhoto

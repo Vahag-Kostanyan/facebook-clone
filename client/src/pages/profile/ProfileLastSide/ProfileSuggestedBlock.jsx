@@ -1,4 +1,4 @@
-import { Button, Flex, Heading, Image, Link } from '@chakra-ui/react'
+import { Flex, Heading, Image, Link } from '@chakra-ui/react'
 import React from 'react'
 import MoreIcon from '../../../svgs/profile/MoreIcon'
 import friendImage from "../../../imgs/friend.jpg"

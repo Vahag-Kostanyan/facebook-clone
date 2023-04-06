@@ -1,30 +1,12 @@
 import { Button, Flex } from '@chakra-ui/react'
 import React from 'react'
+import { ProfileInfoButtonsStyle } from '../../../helpers/Profile'
 import MoreIcon from '../../../svgs/profile/MoreIcon'
 
 function ProfileInfoButtons() {
 
-    const style = {
-        buttonStyle: {
-            padding: "15px 20px",
-            cursor: "pointer",
-            borderRadius: 6,
-            fontSize: 15,
-            color: "#898a8d",
-            fontWeight: 600,
-            _hover: {
-                backgroundColor: "#f0f2f5"
-            }
-        },
-        activeButtonStyle: {
-            padding: "15px 20px",
-            cursor: "pointer",
-            color: "#267ef3",
-            fontSize: 15,
-            fontWeight: 600,
-            borderBottom: "3px solid #1876f2"
-        }
-    }
+    const style = ProfileInfoButtonsStyle();
+
     return (
         <Flex
             padding="2px 0"

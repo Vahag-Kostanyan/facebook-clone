@@ -13,7 +13,7 @@ import { SmallAddIcon } from '@chakra-ui/icons'
 import { GiNinjaHead } from "@react-icons/all-files/gi/GiNinjaHead"
 import { useDispatch, useSelector } from 'react-redux';
 import { uploadAvatar } from '../../../redux/actions/photo';
-import { convertBase64 } from '../../../helper';
+import { convertBase64 } from '../../../helpers/helper';
 
 function AddPhotoProfileModal({ isOpen, onClose }) {
 
@@ -21,19 +21,20 @@ function AddPhotoProfileModal({ isOpen, onClose }) {
     const dispatch = useDispatch();
 
 
-    const addPhoto = async (e) => {
+    const addAvatar = async (e) => {
         
+        const token = localStorage.getItem("token");
+
         const base64 = await convertBase64(e.target.files[0])
         const req = {
-            image: base64,
-            userId: user._id
+            avatar: base64,
+            token: token
         }
         
         
         dispatch(uploadAvatar(req));
 
         onClose();
-        
     }
 
     
@@ -62,7 +63,7 @@ function AddPhotoProfileModal({ isOpen, onClose }) {
                         gap={2}
                         padding={3}
                     >
-                        <label for="addPhotoInput">
+                        <label htmlFor="addAvatarInput">
                             <Flex
                                 backgroundColor={"#e7f3ff"}
                                 color="#237ef3"
@@ -80,7 +81,7 @@ function AddPhotoProfileModal({ isOpen, onClose }) {
                                 Upload photo
                             </Flex>
                         </label>
-                        <input multiple onChange={addPhoto} type={"file"} style={{ display: "none" }} id="addPhotoInput" />
+                        <input onChange={addAvatar} type={"file"} style={{ display: "none" }} id="addAvatarInput" />
                         <Button width={"100%"}
                             display="flex"
                             gap={2}

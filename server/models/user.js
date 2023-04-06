@@ -8,6 +8,7 @@ const User = new mongoose.Schema(
         birthday: { type: Date, required: true },
         gender: { type: String, required: true },
         avatar: {data: Buffer, contentType: String, required: false},
+        cover: {data: Buffer, contentType: String, required: false},
         password: { type: String, required: true },
     },
 )

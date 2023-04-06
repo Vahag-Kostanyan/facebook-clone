@@ -1,11 +1,11 @@
 import { Flex, Image } from '@chakra-ui/react'
 import React from 'react'
-import liveVideo from "../imgs/liveVideoIcone.png"
-import photo from "../imgs/photo.png"
-import feeling from "../imgs/feeling.png"
-import lifeEvent from "../imgs/lifeEvent.png"
-import profile from "../imgs/profile.png"
-import Avatar from "../components/modals/profile/Avatar"
+import liveVideo from "../../imgs/liveVideoIcone.png"
+import photo from "../../imgs/photo.png"
+import feeling from "../../imgs/feeling.png"
+import lifeEvent from "../../imgs/lifeEvent.png"
+import profile from "../../imgs/profile.png"
+import Avatar from "../modals/profile/Avatar"
 
 function CreatePost({ massage }) {
     const style = {

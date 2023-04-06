@@ -1,36 +1,17 @@
 import { Flex, Heading, Image, Link, Textarea } from '@chakra-ui/react'
 import React from 'react'
-import MoreIcon from '../svgs/profile/MoreIcon'
-import profile from "../imgs/profile.png"
-import Bear from "../imgs/whiteBear.png"
+import MoreIcon from '../../svgs/profile/MoreIcon'
+import profile from "../../imgs/profile.png"
+import Bear from "../../imgs/whiteBear.png"
 import { AiOutlineLike } from "@react-icons/all-files/ai/AiOutlineLike"
 import { RiShareForwardLine } from "@react-icons/all-files/ri/RiShareForwardLine"
 import { ChatIcon } from '@chakra-ui/icons'
-import Avatar from './modals/profile/Avatar'
+import Avatar from '../modals/profile/Avatar'
+import { ProfileAboutYouStyle } from '../../helpers/Profile'
 
 function ProfileAboutYou() {
 
-    const style = {
-        blocks: {
-            width: "100%",
-            backgroundColor: "#ffffff",
-            borderRadius: 10,
-            boxShadow: "0px 3px 6px #dbdbdb",
-            flexDirection: "column",
-        },
-        middleBlock: {
-            flex: 4,
-            padding: 1,
-            alignItems: "center",
-            justifyContent: "center",
-            _hover: {
-                backgroundColor: "#f0f2f5"
-            },
-            cursor: "pointer",
-            gap: 2
-        },
-
-    }
+    const style = ProfileAboutYouStyle();
 
     return (
         <Flex

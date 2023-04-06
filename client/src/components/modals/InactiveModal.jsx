@@ -5,6 +5,7 @@ function InactiveModal({changeModalStatus}) {
   return (
     <Flex
       position="fixed"
+      cursor={"default"}
       left={0}
       top={0}
       width="100vw"

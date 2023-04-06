@@ -3,58 +3,13 @@ import { Flex, Image } from "@chakra-ui/react"
 import HomeMiddleSideReelsIcon from '../../svgs/home/HomeMiddleSideReelsIcon'
 import HomeMiddleSideStoriesIcon from '../../svgs/home/HomeMiddleSideStoriesIcon'
 import ProfileImage from "../../imgs/profileImage2.png"
-import profile from "../../imgs/profile.png"
 import HomeMiddleSidePlusIcon from '../../svgs/home/HomeMiddleSidePlusIcon'
-import liveVideo from "../../imgs/liveVideoIcone.png"
-import photo from "../../imgs/photo.png"
-import feeling from "../../imgs/feeling.png"
-import CreatePost from '../../components/CreatePost'
+import CreatePost from '../../components/profile/CreatePost'
+import { HomeMiddleSideStyle } from '../../helpers/Home'
 
 function HomeMiddleSide() {
 
-  const style = {
-    center: {
-      alignItems: "center",
-      justifyContent: "center"
-    },
-
-    blocks: {
-      width: "100%",
-      backgroundColor: "#ffffff",
-      borderRadius: 10,
-      boxShadow: "0px 3px 6px #dbdbdb",
-      flexDirection: "column",
-    },
-    firstBlockItem: {
-      flex: 6,
-      padding: "15px 0",
-      alignItems: "center",
-      justifyContent: "center",
-      color: "#65676B",
-      fontWeight: 600,
-      cursor: "pointer",
-      _hover: {
-        backgroundColor: "#e7e8e9"
-      },
-      borderRadius: 10,
-      gap: "10px"
-    },
-    secondBlockItem: {
-      flex: 6,
-      padding: "10px 0",
-      alignItems: "center",
-      justifyContent: "center",
-      color: "#65676B",
-      fontWeight: 600,
-      cursor: "pointer",
-      fontSize: "14px",
-      _hover: {
-        backgroundColor: "#e7e8e9"
-      },
-      borderRadius: 10,
-      gap: "10px"
-    }
-  }
+  const style = HomeMiddleSideStyle();
 
   return (
     <Flex

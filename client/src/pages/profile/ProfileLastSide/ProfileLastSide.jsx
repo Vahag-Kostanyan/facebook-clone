@@ -1,17 +1,14 @@
 import { Flex } from '@chakra-ui/react'
 import React from 'react'
-import CreatePost from '../../../components/CreatePost'
-import ProfileAboutYou from '../../../components/ProfileAboutYou'
-import ViewPost from '../../../components/ViewPost'
+import CreatePost from '../../../components/profile/CreatePost'
+import ProfileAboutYou from '../../../components/profile/ProfileAboutYou'
+import ViewPost from '../../../components/profile/ViewPost'
 import ProfileFriends from './ProfileFriends'
 import ProfileInfo from './ProfileInfo'
 import ProfilePhotos from './ProfilePhotos'
 import ProfileSuggestedBlock from './ProfileSuggestedBlock'
 
 function ProfileLastSide() {
-
-
- 
 
     return (
         <Flex

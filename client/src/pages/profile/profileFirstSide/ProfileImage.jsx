@@ -1,10 +1,9 @@
-import { Flex, Image, Input, useDisclosure } from '@chakra-ui/react'
+import { Flex, useDisclosure } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import InactiveModal from "../../../components/modals/InactiveModal"
-import NavbarProfileModal from "../../../components/modals/NavbarProfileModal"
+import NavbarProfileModal from "../../../components/modals/navbar/NavbarProfileModal"
 import UploadProfileModal from '../../../components/modals/profile/UploadProfileModal'
-import AddPhotoProfileModal from '../../../components/modals/profile/AddPhotoProfileModal'
-import { useSelector } from 'react-redux'
+import AddPhotoProfileModal from '../../../components/modals/profile/AddAvatarPhotoModal'
 import Avatar from '../../../components/modals/profile/Avatar'
 
 
@@ -19,6 +18,8 @@ function ProfileImage() {
     const uploadPhotoHandler = () => {
         setUploadPhotoModal(!uploadPhotoModal);
     }
+
+
     return (
         <Flex>
             <Flex
@@ -44,6 +45,7 @@ function ProfileImage() {
                 top="545px"
                 left="130px"
                 backgroundColor="#e4e6eb"
+                onClick={onOpen}
             >
                 <i data-visualcompletion="css-img"
                     style={{
