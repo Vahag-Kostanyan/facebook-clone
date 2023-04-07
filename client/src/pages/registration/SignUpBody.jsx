@@ -39,12 +39,12 @@ function SignUpBody({SignUpHandler, datas, monthaArr, dayArr, yearArr}) {
                     </Flex>
                     <Flex gap="3px" flexDirection="column">
                         <Input
-                            value={datas.mail}
+                            value={datas.email}
                             onChange={SignUpHandler}
-                            name="mail"
+                            name="email"
                             placeholder='Email' border="1px solid #d6d9dd" background="#f5f6f7" focusBorderColor="#d6d9dd"
                             _hover={{ outline: "none" }} />
-                        <Heading marginLeft="5px" color="#ff0000" as="span" fontSize="12px" className='mail' />
+                        <Heading marginLeft="5px" color="#ff0000" as="span" fontSize="12px" className='email' />
                     </Flex>
                     <Flex gap="3px" flexDirection="column">
                         <Input
