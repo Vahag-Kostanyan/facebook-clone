@@ -25,14 +25,9 @@ function AddPhotoProfileModal({ isOpen, onClose }) {
         
         const token = localStorage.getItem("token");
 
-        const base64 = await convertBase64(e.target.files[0])
-        const req = {
-            avatar: base64,
-            token: token
-        }
+        const base64 = await convertBase64(e.target.files[0])        
         
-        
-        dispatch(uploadAvatar(req));
+        dispatch(uploadAvatar({ data: base64, token: token }));
 
         onClose();
     }

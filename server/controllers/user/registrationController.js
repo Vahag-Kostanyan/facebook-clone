@@ -41,22 +41,11 @@ exports.login = async (req, res) => {
 
 
 exports.signUp = async (req, res) => {
-    try {
-
-        
+    try {        
         const { error, value } = signUpValidation.validate(req.body);
 
         if (error) {
             return res.json({ status: "error", massage: error.details[0].message })
-        }
-
-        if (error) {
-            massage = [];
-            error.details.forEach(item => {
-                massage.push(item.message);
-            })
-            console.log({ status: "error", massage: massage });
-            return res.json({ status: "error", massage: massage })
         }
 
         const checkUser = await User.findOne({ email: req.body.email });

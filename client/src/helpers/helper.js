@@ -10,3 +10,11 @@ export const convertBase64 = (file) => {
         }
     })
 }
+
+export const getToken = () => {
+    const token = localStorage.getItem("token");
+
+    if(!token) return window.location.assign("/login")
+
+    return token;
+}

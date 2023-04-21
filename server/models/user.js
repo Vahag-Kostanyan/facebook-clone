@@ -9,6 +9,7 @@ const User = new mongoose.Schema(
         gender: { type: String, required: true },
         avatar: {data: Buffer, contentType: String, required: false},
         cover: {data: Buffer, contentType: String, required: false},
+        bio: { type: String, required: false },
         password: { type: String, required: true },
     },
 )

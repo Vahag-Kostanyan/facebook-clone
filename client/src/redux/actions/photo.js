@@ -23,3 +23,10 @@ export const removeCoverPhoto = (token) => async (dispatch) => {
     
     dispatch({type: "remove_cover_photo", payload: "remove"})
 }
+
+export const AddPost = (req) => async (dispatch) => {
+    const res = await api.AddPost(req);
+    if(res.status != 200) return false
+
+    dispatch({type: "add_post", payload: res.data.data})
+}

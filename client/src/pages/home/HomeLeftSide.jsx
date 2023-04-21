@@ -7,6 +7,8 @@ import facebookIcon from "../../imgs/facebook-icon.png"
 import HomeSidebarIconDown from "../../svgs/home/HomeSidebarIconDown"
 import Avatar from '../../components/modals/profile/Avatar'
 import { homeLeftSideItemArr } from '../../helpers/Home'
+import IconWithData from '../../icons/home/IconWithData'
+import FriendsIcon from '../../icons/home/FriendsIcon'
 
 
 const itemsArr = homeLeftSideItemArr();
@@ -63,13 +65,7 @@ function HomeLeftSide() {
                     <Flex
                         sx={itemStyle}
                     >
-                        <i data-visualcompletion="css-img"
-                            style={{
-                                backgroundImage: "url('https://static.xx.fbcdn.net/rsrc.php/v3/yU/r/BHDNlEdwMgn.png')",
-                                backgroundPosition: "0 -296px", backgroundSize: "auto", width: "36px", height: "36px",
-                                backgroundRepeat: "no-repeat", display: "inline-block"
-                            }}
-                        ></i>
+                       <FriendsIcon/>
                         <Heading
                             as={"span"}
                             fontSize="16px"
@@ -121,13 +117,8 @@ function HomeLeftSide() {
                             <Flex
                                 sx={itemStyle}
                             >
-                                <i data-visualcompletion="css-img"
-                                    style={{
-                                        backgroundImage: item.url,
-                                        backgroundPosition: item.position, backgroundSize: "auto", width: "36px", height: "36px",
-                                        backgroundRepeat: "no-repeat", display: "inline-block"
-                                    }}
-                                ></i>
+                                <IconWithData item={item} />
+
                                 <Heading
                                     as={"span"}
                                     fontSize="16px"

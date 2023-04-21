@@ -27,6 +27,13 @@ export const LogIn = async (userData) => {
         localStorage.setItem("token", data.token)
         window.location.assign("/");
     }
-
     return data.massage
+}
+
+export const EditBio =  (req) => async (dispatch) => {
+    const  res = await api.EditBio(req);
+    const data = res.data;
+    if(res.status != 200) return false
+    
+    dispatch({type: "edit_bio", payload: data})
 }

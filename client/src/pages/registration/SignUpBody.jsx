@@ -2,7 +2,8 @@ import { Flex, Heading, Input, Link, ModalBody, Radio, RadioGroup, Select, Stack
 import { AiFillQuestionCircle } from "@react-icons/all-files/ai/AiFillQuestionCircle"
 import React from 'react'
 
-function SignUpBody({SignUpHandler, datas, monthaArr, dayArr, yearArr}) {
+function SignUpBody({ SignUpHandler, datas, monthaArr, dayArr, yearArr, signUpValidatio }) {
+
     return (
         <ModalBody >
             <form autoComplete='off'>
@@ -22,18 +23,27 @@ function SignUpBody({SignUpHandler, datas, monthaArr, dayArr, yearArr}) {
                                 value={datas.firstName}
                                 onChange={SignUpHandler}
                                 name="firstName"
-                                placeholder='First name' border="1px solid #d6d9dd" background="#f5f6f7"
+                                placeholder='First name'
+                                border={signUpValidatio.firstName != "" ? "1px solid #ff0000" : "1px solid #d6d9dd"}
+                                background="#f5f6f7"
                                 focusBorderColor="#d6d9dd" _hover={{ outline: "none" }} />
-                            <Heading marginLeft="5px" color="#ff0000" as="span" fontSize="12px" className='firstName' />
-                        </Flex>
+                            <Heading marginLeft="5px" color="#ff0000" as="span" fontSize="12px" >
+                                {signUpValidatio.firstName}
+                            </Heading>                        </Flex>
                         <Flex gap="3px" flexDirection="column">
                             <Input
                                 value={datas.lastName}
                                 onChange={SignUpHandler}
                                 name="lastName"
-                                placeholder='Last name' border="1px solid #d6d9dd"
-                                background="#f5f6f7" focusBorderColor="#d6d9dd" _hover={{ outline: "none" }} />
-                            <Heading marginLeft="5px" color="#ff0000" as="span" fontSize="12px" className='lastName' />
+                                placeholder='Last name'
+                                background="#f5f6f7"
+                                focusBorderColor="#d6d9dd"
+                                _hover={{ outline: "none", border: "none", }}
+                                border={signUpValidatio.lastName != "" ? "1px solid #ff0000" : "1px solid #d6d9dd"}
+                            />
+                            <Heading marginLeft="5px" color="#ff0000" as="span" fontSize="12px" >
+                                {signUpValidatio.lastName}
+                            </Heading>
                         </Flex>
 
                     </Flex>
@@ -42,9 +52,13 @@ function SignUpBody({SignUpHandler, datas, monthaArr, dayArr, yearArr}) {
                             value={datas.email}
                             onChange={SignUpHandler}
                             name="email"
-                            placeholder='Email' border="1px solid #d6d9dd" background="#f5f6f7" focusBorderColor="#d6d9dd"
+                            placeholder='Email'
+                            border={signUpValidatio.lastName != "" ? "1px solid #ff0000" : "1px solid #d6d9dd"}
+                            background="#f5f6f7" focusBorderColor="#d6d9dd"
                             _hover={{ outline: "none" }} />
-                        <Heading marginLeft="5px" color="#ff0000" as="span" fontSize="12px" className='email' />
+                        <Heading marginLeft="5px" color="#ff0000" as="span" fontSize="12px" >
+                            {signUpValidatio.email}
+                        </Heading>
                     </Flex>
                     <Flex gap="3px" flexDirection="column">
                         <Input
@@ -52,9 +66,13 @@ function SignUpBody({SignUpHandler, datas, monthaArr, dayArr, yearArr}) {
                             onChange={SignUpHandler}
                             name="password"
                             type="password"
-                            placeholder='New password' border="1px solid #d6d9dd" background="#f5f6f7" focusBorderColor="#d6d9dd"
+                            placeholder='New password'
+                            border={signUpValidatio.password != "" ? "1px solid #ff0000" : "1px solid #d6d9dd"}
+                            background="#f5f6f7" focusBorderColor="#d6d9dd"
                             _hover={{ outline: "none" }} />
-                        <Heading marginLeft="5px" color="#ff0000" as="span" fontSize="12px" className='password' />
+                        <Heading marginLeft="5px" color="#ff0000" as="span" fontSize="12px" >
+                            {signUpValidatio.password}
+                        </Heading>
                     </Flex>
 
                     <Flex
@@ -73,7 +91,8 @@ function SignUpBody({SignUpHandler, datas, monthaArr, dayArr, yearArr}) {
                                 defaultValue={datas.month}
                                 onChange={SignUpHandler}
                                 name="month"
-                                border="1px solid #d6d9dd" focusBorderColor="#d6d9dd">
+                                border="1px solid #d6d9dd"
+                                focusBorderColor="#d6d9dd">
                                 {monthaArr.map((item, index) => {
                                     return (
                                         <option key={index} value={index + 1} >{item}</option>
@@ -123,7 +142,13 @@ function SignUpBody({SignUpHandler, datas, monthaArr, dayArr, yearArr}) {
                                         gap="10px"
                                     >
                                         <label htmlFor="genderFemale">
-                                            <Flex className='genderContainer' fontSize="16px" gap="40px" padding="5px 10px" borderRadius="5px" border="1px solid #d6d9dd">
+                                            <Flex
+                                                fontSize="16px"
+                                                gap="40px"
+                                                padding="5px 10px"
+                                                borderRadius="5px"
+                                                border={signUpValidatio.gender != "" ? "1px solid #ff0000" : "1px solid #d6d9dd"}
+                                            >
                                                 Female
                                                 <Radio
                                                     onChange={SignUpHandler}
@@ -134,7 +159,13 @@ function SignUpBody({SignUpHandler, datas, monthaArr, dayArr, yearArr}) {
                                             </Flex>
                                         </label>
                                         <label htmlFor="genderMail">
-                                            <Flex className='genderContainer' fontSize="16px" gap="45px" padding="5px 10px" borderRadius="5px" border="1px solid #d6d9dd">
+                                            <Flex
+                                                fontSize="16px"
+                                                gap="45px"
+                                                padding="5px 10px"
+                                                borderRadius="5px"
+                                                border={signUpValidatio.gender != "" ? "1px solid #ff0000" : "1px solid #d6d9dd"}
+                                            >
                                                 Male
                                                 <Radio
                                                     onChange={SignUpHandler}
@@ -143,7 +174,13 @@ function SignUpBody({SignUpHandler, datas, monthaArr, dayArr, yearArr}) {
                                             </Flex>
                                         </label>
                                         <label htmlFor="genderCustom">
-                                            <Flex className='genderContainer' fontSize="16px" gap="35px" padding="5px 10px" borderRadius="5px" border="1px solid #d6d9dd">
+                                            <Flex
+                                                fontSize="16px"
+                                                gap="35px"
+                                                padding="5px 10px"
+                                                borderRadius="5px"
+                                                border={signUpValidatio.gender != "" ? "1px solid #ff0000" : "1px solid #d6d9dd"}
+                                            >
                                                 Custom
                                                 <Radio
                                                     onChange={SignUpHandler}
@@ -152,7 +189,9 @@ function SignUpBody({SignUpHandler, datas, monthaArr, dayArr, yearArr}) {
                                             </Flex>
                                         </label>
                                     </Stack>
-                                    <Heading marginLeft="5px" color="#ff0000" as="span" fontSize="12px" className='gender' />
+                                    <Heading marginLeft="5px" color="#ff0000" as="span" fontSize="12px" >
+                                        {signUpValidatio.gender}
+                                    </Heading>
                                 </Flex>
 
                             </RadioGroup>

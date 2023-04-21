@@ -1,5 +1,6 @@
 import { Flex, Heading } from '@chakra-ui/react'
 import React from 'react'
+import AddGroupIcon from '../../icons/home/AddGroupIcon'
 
 function HomeRightSide() {
 
@@ -42,13 +43,7 @@ function HomeRightSide() {
                     backgroundColor="#e4e6eb"
                     cursor="pointer"
                 >
-                    <i data-visualcompletion="css-img"
-                        style={{
-                            backgroundImage: "url('https://static.xx.fbcdn.net/rsrc.php/v3/ys/r/FCRAmx_ty4O.png')",
-                            backgroundPosition: "0 -944px", backgroundSize: "auto", width: "20px", height: "20px",
-                            backgroundRepeat: "no-repeat", display: "inline-block"
-                        }}
-                    ></i>
+                    <AddGroupIcon/>
                 </Flex>
                 Create new group
             </Flex>

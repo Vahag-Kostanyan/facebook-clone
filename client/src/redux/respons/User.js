@@ -17,6 +17,11 @@ export default (user = {}, action) => {
                 return delete user.cover;
             }
             return user;
+        case "edit_bio":
+            return {
+                ...user, 
+                bio: action.payload
+            }
         default:
             return user;
     }

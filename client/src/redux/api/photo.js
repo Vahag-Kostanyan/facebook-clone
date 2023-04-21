@@ -11,8 +11,6 @@ const config = {
 export const uploadAvatar = async (req) => {
     config.headers["x-access-token"] = req.token;
     
-    console.log(req.avatar);
-
     const data = await axios.post(backURL + "/api/photo/uploadAvatar", {avatar: req.avatar}, config);
     return data;
 };
@@ -30,5 +28,13 @@ export const removeCoverPhoto = async (token) => {
     config.headers["x-access-token"] = token;
     
     const data = await axios.post(backURL + "/api/photo/removeCoverPhoto", {}, config);
+    return data;
+};
+
+
+export const AddPost = async (req) => {
+    config.headers["x-access-token"] = req.token;
+    
+    const data = await axios.post(backURL + "/api/photo/addPost", {data: req.data}, config);
     return data;
 };

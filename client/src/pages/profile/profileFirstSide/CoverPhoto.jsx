@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import AddCoverPhotoModal from '../../../components/modals/profile/AddCoverPhotoModal';
 import InactiveModal from "../../../components/modals/InactiveModal"
 import { useSelector } from 'react-redux';
+import AddCoverPhotoIcon from '../../../icons/home/AddCoverPhotoIcon';
 
 function CoverPhoto() {
   const [coverPhotoModal, setCoverPhotoModal] = useState(false);
@@ -23,7 +24,7 @@ function CoverPhoto() {
       width="100%"
       borderBottomRadius={10}
       alignItems="flex-end"
-      onClick={user.cover ? "" : changeCoverPhotoModalStatus}
+      onClick={changeCoverPhotoModalStatus}
       cursor={"pointer"}
     >
       <Flex
@@ -47,13 +48,7 @@ function CoverPhoto() {
           fontWeight="600"
           onClick={changeCoverPhotoModalStatus}
         >
-          <i data-visualcompletion="css-img"
-            style={{
-              backgroundImage: "url('	https://static.xx.fbcdn.net/rsrc.php/v3/yU/r/emk5nc_FTRC.png')",
-              backgroundPosition: "0 -156px", backgroundSize: "auto", width: "16px", height: "16px",
-              backgroundRepeat: "no-repeat", display: "inline-block"
-            }}
-          ></i>
+          <AddCoverPhotoIcon/>
           Add cover photo
         </Flex>
 

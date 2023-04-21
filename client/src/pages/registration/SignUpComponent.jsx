@@ -42,14 +42,37 @@ function SignUpComponent({ isOpen, onClose }) {
         dayArr.push(i)
     }
 
-    const validationFunction = (field) => {
-        console.log(datas[field]);
+    const validationFunction = (field, value) => {
+
+        if(value){
+            value = value.replace(/\s/g, '');
+            if (field != "birthday" && field != "day" && field != "month" && field != "year") {
+                signUpValidation[field] = "";
+                if (value == "") {
+                    signUpValidation[field] = `${field} field is required!`;
+                } else {
+                    if (value.length < 3) {
+                        signUpValidation[field] = `${field} must be minimum 3 symbols!`;
+                    } else {
+                        if (field == "email") {
+                            let regexExp = /\S+@\S+\.\S+/;
+                            if (!regexExp.test(value)) {
+                                signUpValidation[field] = `email address is invalid!`;
+                            }
+                        }
+                    }
+                }
+            }
+
+            return
+        }
+
         if (field != "birthday" && field != "day" && field != "month" && field != "year") {
             signUpValidation[field] = "";
-            if (datas[field] == "") {
+            if (datas[field].replace(/\s/g, '') == "") {
                 signUpValidation[field] = `${field} field is required!`;
             } else {
-                if (datas[field].length < 3) {
+                if (datas[field].replace(/\s/g, '').length < 3) {
                     signUpValidation[field] = `${field} must be minimum 3 symbols!`;
                 } else {
                     if (field == "email") {
@@ -63,7 +86,7 @@ function SignUpComponent({ isOpen, onClose }) {
         }
     }
 
-    const validation = (all = false, field = "") => {
+    const validation = (all = false, field = "", value = null) => {
         if (all) {
             let t = false;
             for (let SignUpDate in datas) {
@@ -72,114 +95,26 @@ function SignUpComponent({ isOpen, onClose }) {
                 }
                 validationFunction(SignUpDate);
             }
-            console.log(signUpValidation);
 
-            for (let item in signUpValidation) if (item != "") return true
+            for (let item in signUpValidation) if (signUpValidation[item] != "") return true
 
             return false;
         }
 
         if (field != "birthday" && field != "day" && field != "month" && field != "year") {
-            validationFunction(field);
+            validationFunction(field, value);
         }
-        console.log(signUpValidation);
 
     }
-
-    // const requiredValidate = (all = false, field = "") => {
-    //     if (all) {
-    //         let t = false;
-    //         for (let SignUpDate in datas) {
-    //             if (SignUpDate == "birthday" || SignUpDate == "day" || SignUpDate == "month" || SignUpDate == "year") {
-    //                 continue;
-    //             }
-
-    //             if (datas[SignUpDate].length <= 3) {
-    //                 if (SignUpDate == "gender") {
-    //                     t = true;
-    //                     const gender = document.querySelectorAll(`.genderContainer`)
-    //                     gender.forEach(item => {
-    //                         item.style.border = "1px solid #ff0000"
-    //                     })
-    //                     document.querySelector(`.${SignUpDate}`).innerHTML = `${SignUpDate} field is required!`
-    //                 } else {
-    //                     document.querySelector(`[name=${SignUpDate}]`).style.border = "1px solid #ff0000"
-    //                     document.querySelector(`.${SignUpDate}`).innerHTML = `The ${SignUpDate} must be minimum 3 symbols!`
-    //                 }
-    //             } else {
-    //                 if (SignUpDate == "gender") {
-    //                     const gender = document.querySelectorAll(`.genderContainer`)
-    //                     gender.forEach(item => {
-    //                         item.style.border = "1px solid #d6d9dd"
-    //                     })
-    //                     document.querySelector(`.${SignUpDate}`).innerHTML = ``
-    //                 } else if (SignUpDate == "email") {
-    //                     let item = document.querySelector(`[name=${SignUpDate}]`);
-    //                     var regexExp = /\S+@\S+\.\S+/;
-    //                     if (!regexExp.test(item.value)) {
-    //                         document.querySelector(`[name=${SignUpDate}]`).style.border = "1px solid #ff0000"
-    //                         document.querySelector(`.${SignUpDate}`).innerHTML = `email address is invalid`
-    //                     } else {
-    //                         document.querySelector(`[name=${SignUpDate}]`).style.border = "1px solid #d6d9dd"
-    //                         document.querySelector(`.${SignUpDate}`).innerHTML = ``
-    //                     }
-    //                 } else {
-    //                     document.querySelector(`[name=${SignUpDate}]`).style.border = "1px solid #d6d9dd"
-    //                     document.querySelector(`.${SignUpDate}`).innerHTML = ``
-    //                 }
-    //             }
-    //         }
-    //         return t;
-    //     } else {
-    //         if (field == "birthday" || field == "day" || field == "month" || field == "year") return;
-
-    //         let item = document.querySelector(`[name=${field}]`);
-
-    //         if (item.value.length <= 3) {
-    //             if (field == "gender") {
-    //                 const gender = document.querySelectorAll(`.genderContainer`)
-    //                 gender.forEach(item => {
-    //                     item.style.border = "1px solid #ff0000"
-    //                 })
-    //                 document.querySelector(`.${field}`).innerHTML = `The ${field} must be minimum 3 symbols!`
-    //             } else {
-    //                 document.querySelector(`[name=${field}]`).style.border = "1px solid #ff0000"
-    //                 document.querySelector(`.${field}`).innerHTML = `The ${field} must be minimum 3 symbols!`
-    //             }
-    //         } else {
-    //             if (field == "gender") {
-    //                 const gender = document.querySelectorAll(`.genderContainer`)
-    //                 gender.forEach(item => {
-    //                     item.style.border = "1px solid #d6d9dd"
-    //                 })
-    //                 document.querySelector(`.${field}`).innerHTML = ``
-    //             } else if (field == "email") {
-    //                 let regexExp = /\S+@\S+\.\S+/;
-    //                 if (!regexExp.test(item.value)) {
-    //                     document.querySelector(`[name=${field}]`).style.border = "1px solid #ff0000"
-    //                     document.querySelector(`.${field}`).innerHTML = `email address is invalid`
-    //                 } else {
-    //                     document.querySelector(`[name=${field}]`).style.border = "1px solid #d6d9dd"
-    //                     document.querySelector(`.${field}`).innerHTML = ``
-    //                 }
-    //             } else {
-    //                 document.querySelector(`[name=${field}]`).style.border = "1px solid #d6d9dd"
-    //                 document.querySelector(`.${field}`).innerHTML = ``
-    //             }
-    //         }
-    //     }
-    // }
 
 
     const SignUpHandler = (e) => {
         setDatas(item => {
             return { ...item, [e.target.name]: e.target.value }
         })
-        console.log(e.target.value);
-        console.log(datas[e.target.name]);
 
         if (check) {
-            validation(false, e.target.name);
+            validation(false, e.target.name, e.target.value);
         }
     }
 
@@ -187,6 +122,8 @@ function SignUpComponent({ isOpen, onClose }) {
 
         setCheck(true)
         let t = validation(true)
+
+        console.log(t);
 
         if (t) return;
 
@@ -234,7 +171,7 @@ function SignUpComponent({ isOpen, onClose }) {
 
                 <hr />
 
-                <SignUpBody SignUpHandler={SignUpHandler} datas={datas} monthaArr={monthaArr} dayArr={dayArr} yearArr={yearArr} />
+                <SignUpBody SignUpHandler={SignUpHandler} datas={datas} monthaArr={monthaArr} dayArr={dayArr} yearArr={yearArr} signUpValidatio={signUpValidation} />
 
                 <SignUpFooter SignUpBtn={SignUpBtn} />
 

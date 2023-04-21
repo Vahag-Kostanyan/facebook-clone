@@ -1,4 +1,4 @@
-import { Flex, Image } from '@chakra-ui/react'
+import { Flex, Image, useDisclosure } from '@chakra-ui/react'
 import React from 'react'
 import liveVideo from "../../imgs/liveVideoIcone.png"
 import photo from "../../imgs/photo.png"
@@ -6,32 +6,15 @@ import feeling from "../../imgs/feeling.png"
 import lifeEvent from "../../imgs/lifeEvent.png"
 import profile from "../../imgs/profile.png"
 import Avatar from "../modals/profile/Avatar"
+import { CreatePostStyle } from '../../helpers/components/modals'
+import AddPostModal from '../modals/profile/AddPostModal/AddPostModal'
 
 function CreatePost({ massage }) {
-    const style = {
-        blocks: {
-            width: "100%",
-            backgroundColor: "#ffffff",
-            borderRadius: 10,
-            boxShadow: "0px 3px 6px #dbdbdb",
-            flexDirection: "column",
-        },
-        secondBlockItem: {
-            flex: 6,
-            padding: "10px 0",
-            alignItems: "center",
-            justifyContent: "center",
-            color: "#65676B",
-            fontWeight: 600,
-            cursor: "pointer",
-            fontSize: "16px",
-            _hover: {
-                backgroundColor: "#e7e8e9"
-            },
-            borderRadius: 10,
-            gap: "10px"
-        }
-    }
+    const { isOpen, onOpen, onClose } = useDisclosure()
+
+    const style = CreatePostStyle();
+
+
     return (
         <Flex
             sx={style.blocks}
@@ -75,7 +58,9 @@ function CreatePost({ massage }) {
                 <Flex
                     flex={4}
                     sx={style.secondBlockItem}
+                    onClick={onOpen}
                 >
+                    <AddPostModal isOpen={isOpen} onClose={onClose}/>
                     <Image width="22px" src={photo} ></Image>
                     Photo/video
                 </Flex>
