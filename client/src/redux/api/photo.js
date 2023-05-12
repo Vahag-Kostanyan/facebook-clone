@@ -38,3 +38,10 @@ export const AddPost = async (req) => {
     const data = await axios.post(backURL + "/api/photo/addPost", {data: req.data}, config);
     return data;
 };
+
+export const getPosts = async (token) => {
+    config.headers["x-access-token"] = token;
+    
+    const data = await axios.post(backURL + "/api/photo/getPost", {}, config);
+    return data;
+};

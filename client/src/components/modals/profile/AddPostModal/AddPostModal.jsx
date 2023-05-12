@@ -45,7 +45,10 @@ function AddPostModal({ isOpen, onClose }) {
         if (postPhoto == "") return
 
         dispatch(AddPost({ token, data: { description: postDescription, photos: postPhoto } }))
-        // onClose()
+
+        setPostPhoto("");
+        setPostDescription("");
+        onClose();
     }
 
     const removePostPhoto = () => {

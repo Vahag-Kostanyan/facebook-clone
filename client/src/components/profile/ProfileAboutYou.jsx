@@ -8,6 +8,8 @@ import { RiShareForwardLine } from "@react-icons/all-files/ri/RiShareForwardLine
 import { ChatIcon } from '@chakra-ui/icons'
 import Avatar from '../modals/profile/Avatar'
 import { ProfileAboutYouStyle } from '../../helpers/Profile'
+import ProfileComment from '../modals/profile/ProfileComment'
+import ProfileLikeCommentAndShear from '../modals/profile/ProfileLikeCommentAndShear'
 
 function ProfileAboutYou() {
 
@@ -81,67 +83,9 @@ function ProfileAboutYou() {
                 </Flex>
 
             </Flex>
-            <hr />
-            <Flex
-                padding="5px 0"
-                gap={2}
-                color="#65676b"
-                fontSize="16px"
-                fontWeight={500}
-            >
-                <Flex
-                    sx={style.middleBlock}
-                >
-                    <AiOutlineLike size={20} />
-                    Like</Flex>
-                <Flex
-
-                    sx={style.middleBlock}
-                >
-                    <ChatIcon />
-                    Comment
-                </Flex>
-                <Flex
-                    sx={style.middleBlock}
-                >
-                    <RiShareForwardLine size={20} />
-                    Share
-                </Flex>
-            </Flex>
-            <hr />
-
-            <Flex
-                padding="10px 0"
-                gap={1}
-            >
-                <Flex>
-                    <Avatar width={"40px"} height={"40px"} />
-
-                </Flex>
-                <Flex
-                    flexDirection="column"
-                    width="100%"
-                >
-                    <textarea
-                        placeholder='Write a comment…'
-                        style={{
-                            height: "35px",
-                            padding: "5px 10px",
-                            backgroundColor: "#f0f2f5",
-                            outline: "none",
-                            borderRadius: 20,
-                        }}
-                    >
-
-                    </textarea>
-                    <Heading
-                        as={"p"}
-                        fontSize="13px"
-                        fontWeight={400}
-                        color="#787878"
-                    >Press Enter to post.</Heading>
-                </Flex>
-            </Flex>
+            <ProfileLikeCommentAndShear />
+            <ProfileComment/>
+  
         </Flex>
     )
 }

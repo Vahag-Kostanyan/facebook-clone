@@ -11,6 +11,8 @@ const User = new mongoose.Schema(
         cover: {data: Buffer, contentType: String, required: false},
         bio: { type: String, required: false },
         password: { type: String, required: true },
+        createdAt: {type: Date, required: true},
+        updatedAt: {type: Date, required: false}
     },
 )
 module.exports = mongoose.model("user", User);

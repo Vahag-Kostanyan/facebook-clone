@@ -2,9 +2,11 @@ const mongoose = require("mongoose");
 
 const Post = new mongoose.Schema(
     {
-        userId: {type: String, require: true},
-        description: {type: String, require: false},
-        photo: {type: Buffer, contentType: String, require: false}
+        userId: {type: String, required: true},
+        description: {type: String, required: false},
+        image: {type: String},
+        createdAt: {type: Date, required: true},
+        updatedAt: {type: Date, required: false}
     }
 )
 

@@ -1,5 +1,7 @@
 import { Flex } from '@chakra-ui/react'
 import React from 'react'
+import { useSelector } from 'react-redux'
+import ProfilePost from '../../../components/modals/profile/ProfilePost'
 import CreatePost from '../../../components/profile/CreatePost'
 import ProfileAboutYou from '../../../components/profile/ProfileAboutYou'
 import ViewPost from '../../../components/profile/ViewPost'
@@ -9,6 +11,8 @@ import ProfilePhotos from './ProfilePhotos'
 import ProfileSuggestedBlock from './ProfileSuggestedBlock'
 
 function ProfileLastSide() {
+
+    const posts = useSelector(state => state.post);
 
     return (
         <Flex
@@ -51,6 +55,12 @@ function ProfileLastSide() {
                             <CreatePost massage = "from profile"/>
 
                             <ViewPost/>
+
+                            {posts.length > 0 ?(
+                                <ProfilePost/>
+                            ) : (
+                                <></>                                
+                            )}
 
                             <ProfileAboutYou/>
                         </Flex>

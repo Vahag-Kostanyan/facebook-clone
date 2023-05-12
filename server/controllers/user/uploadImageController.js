@@ -8,7 +8,7 @@ exports.uploadAvatar = async (req, res) => {
     try {
         const email = await verifyUserToken(token);
 
-        const user = await User.findOneAndUpdate({ email: email }, { $set: { avatar: req.body.avatar } }).select("-password");
+        const user = await User.findOneAndUpdate({ email: email }, { $set: { "avatar": req.body.avatar } }).select("-password");
 
         if (!user) {
             return res.status(500).json({ "massage": "something was wrong" });
@@ -55,18 +55,32 @@ exports.removeCoverPhoto = async (req, res) => {
     }
 }
 
-exports.AddPost = async (req, res) => {
+exports.addPost = async (req, res) => {
     const token = req.headers["x-access-token"];
     try {
         const email = await verifyUserToken(token);
 
         const user = await User.findOne({email});
 
-        const checkCreate = await Post.create({
+        const CreatedPost = await Post.create({
             userId: user._id,
             description: req.body.data.description,
-            photo: req.body.data.photos 
-        })
+            image: req.body.data.photos ,
+            createdAt: new Date
+        });
+
+        return res.status(200).json({data: CreatedPost});
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+exports.getPost = async (req, res) => {
+    const token = req.headers["x-access-token"];
+    try {
+        const email = await verifyUserToken(token);
+
+        const user = await User.findOne({email});
 
         const posts = await Post.find({userId: user._id}).select("-userId")
 

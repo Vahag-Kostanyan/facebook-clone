@@ -30,3 +30,10 @@ export const AddPost = (req) => async (dispatch) => {
 
     dispatch({type: "add_post", payload: res.data.data})
 }
+
+export const getPosts = (token) =>async (dispatch) => {
+    const res = await api.getPosts(token);
+    if(res.status != 200) return false;
+
+    dispatch({type: "get_posts", payload: res.data.data})
+}

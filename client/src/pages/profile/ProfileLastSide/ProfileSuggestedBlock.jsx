@@ -94,9 +94,6 @@ function ProfileSuggestedBlock() {
                         padding={2}
                         cursor="pointer"
                         borderRadius={5}
-                        // _hover={{
-                        //     backgroundColor: "#dae5ef"
-                        // }}
                         color="#247ef3"
                         display="flex"
                         alignItems="center"

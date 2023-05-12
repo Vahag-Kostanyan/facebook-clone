@@ -57,6 +57,7 @@ exports.signUp = async (req, res) => {
         const salt = await bcrypt.genSalt(10);
         req.body.password = await bcrypt.hash(req.body.password, salt)
 
+        req.body.createdAt = new Date();
         const user = await User.create(req.body)
 
         res.json({ status: "ok", massage: "User successfully created" });

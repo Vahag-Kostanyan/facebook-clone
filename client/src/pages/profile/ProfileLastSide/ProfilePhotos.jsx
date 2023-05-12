@@ -1,7 +1,10 @@
-import { Flex, Heading, Link } from '@chakra-ui/react'
+import { Flex, Heading, Image, Link } from '@chakra-ui/react'
 import React from 'react'
+import { useSelector } from 'react-redux'
 
 function ProfilePhotos() {
+
+  const posts = useSelector(state => state.post)
   return (
     <Flex
       padding={4}
@@ -34,7 +37,23 @@ function ProfilePhotos() {
           See all photos
         </Link>
       </Flex>
-      <Flex></Flex>
+      <Flex
+        flexWrap={"wrap"}
+        gap={2}
+      >
+        {posts.map((post, index) => {
+          return (
+            <Image
+              objectFit={"cover"}
+              width={"150px"}
+              height="150px"
+              src={post.image}
+              key={index}
+              cursor="pointer"
+            />
+          )
+        })}
+      </Flex>
 
     </Flex>
   )
