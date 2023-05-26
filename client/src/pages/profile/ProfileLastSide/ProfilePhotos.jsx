@@ -4,7 +4,8 @@ import { useSelector } from 'react-redux'
 
 function ProfilePhotos() {
 
-  const posts = useSelector(state => state.post)
+  let posts = useSelector(state => state.post)
+
   return (
     <Flex
       padding={4}
@@ -47,7 +48,7 @@ function ProfilePhotos() {
               objectFit={"cover"}
               width={"150px"}
               height="150px"
-              src={post.image}
+              src={posts[posts.length - 1 - index].image}
               key={index}
               cursor="pointer"
             />

@@ -11,7 +11,6 @@ const config = {
 export const getUser = async (token) => {
     config.headers["x-access-token"] = token
 
-
     const data = await axios.get(backURL + "/api/getUser", config);
     return data
 }

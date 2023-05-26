@@ -21,3 +21,19 @@ exports.editBio = async (req, res) => {
         console.log(error);
     }
 }
+
+exports.UserSearch = async (req, res) => {
+    const token = req.headers['x-access-token'];
+    try{
+        const userEmail = verifyUserToken(token);
+
+        const users = await User.find({
+            // email: { $ne: userEmail}
+            fullName: { $regex: req.body.search, $options: "i" }
+        }).select("fullName").select("avatar").limit(10)
+
+        return res.status(200).json(users);
+    }catch (error) {
+        console.log(error);
+    }
+}

@@ -71,10 +71,9 @@ exports.getUser = async (req, res) => {
     const token = req.headers['x-access-token']
     try {
         const email = await verifyUserToken(token);
-
+        
         const user = await User.findOne({ email: email }).select("-password");
-
-
+        
         if (!user) {
             return res.json({ status: "error", massage: "User not found" })
         }

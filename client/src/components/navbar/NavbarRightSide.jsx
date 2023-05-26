@@ -6,7 +6,7 @@ import MessengerIcon from '../../svgs/navbarIcons/MessengerIcon'
 import NotificationIcon from '../../svgs/navbarIcons/NotificationIcon'
 import Avatar from '../modals/profile/Avatar';
 
-function NavbarRightSide({ route, changeModalStatus }) {
+function NavbarRightSide({ route, changeAvatarModalStatus }) {
     return (
         <Flex
             flex={3}
@@ -77,7 +77,7 @@ function NavbarRightSide({ route, changeModalStatus }) {
             </Flex>
             <Flex
                 cursor="pointer"
-                onClick={changeModalStatus}
+                onClick={changeAvatarModalStatus}
             >
                 <Avatar width={"40px"} height={"40px"} />
 

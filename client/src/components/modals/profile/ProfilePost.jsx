@@ -12,7 +12,6 @@ function ProfilePost() {
     const user = useSelector(state => state.user);
     const posts = useSelector(state => state.post);
 
-    console.log(posts);
     return (
         <Flex
             flexDirection="column"

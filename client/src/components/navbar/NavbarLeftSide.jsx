@@ -4,7 +4,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import facebookIcon from "../../imgs/facebook-icon.png"
 
-function NavbarLeftSide() {
+function NavbarLeftSide({setSearchModalStatus, searchValue, setSearchValue}) {
     return (
         <Flex
             flex={3}
@@ -36,6 +36,8 @@ function NavbarLeftSide() {
                 focusBorderColor="#f0f2f5"
                 maxW="300px"
                 minW="200px"
+                onChange={(e) => {setSearchValue(e.target.value)}}
+                onFocus={() => {setSearchModalStatus(true)}}
             />
         </Flex>
     )

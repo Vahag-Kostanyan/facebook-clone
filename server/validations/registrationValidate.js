@@ -9,6 +9,7 @@ exports.loginValidation = Joi.object({
 exports.signUpValidation = Joi.object({
     firstName: Joi.string().min(3).required(),
     lastName: Joi.string().min(3).required(),
+    fullName: Joi.string().min(3).required(),
     gender: Joi.string().valid("male", "female", "custom").required(),
     birthday: Joi.date().max(new Date()),
     email: Joi.string().email().required(),

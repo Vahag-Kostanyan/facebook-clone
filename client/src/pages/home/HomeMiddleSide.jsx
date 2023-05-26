@@ -61,7 +61,12 @@ function HomeMiddleSide() {
             flexDirection="column"
             cursor="pointer"
           >
-            <Image src={ProfileImage} borderTopRadius={10} height="70%" ></Image>
+            <Image
+              src={ProfileImage}
+              borderTopRadius={10}
+              height="70%"
+              objectFit={"cover"}
+            ></Image>
 
             <Flex
               position={"absolute"}
@@ -95,7 +100,7 @@ function HomeMiddleSide() {
         </Flex>
 
       </Flex>
-      <CreatePost massage = "from home"/>
+      <CreatePost massage="from home" />
 
       <Flex
         sx={style.blocks}

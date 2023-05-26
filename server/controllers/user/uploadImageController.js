@@ -9,7 +9,7 @@ exports.uploadAvatar = async (req, res) => {
         const email = await verifyUserToken(token);
 
         const user = await User.findOneAndUpdate({ email: email }, { $set: { "avatar": req.body.avatar } }).select("-password");
-
+        
         if (!user) {
             return res.status(500).json({ "massage": "something was wrong" });
         }

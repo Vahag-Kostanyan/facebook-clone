@@ -28,7 +28,7 @@ function SignUpComponent({ isOpen, onClose }) {
     });
 
     const monthaArr = [
-        "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Aug", "Sep", "Oct", "Nov", "Dec"
+        "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
     ];
 
     const dayArr = [];
@@ -123,8 +123,6 @@ function SignUpComponent({ isOpen, onClose }) {
         setCheck(true)
         let t = validation(true)
 
-        console.log(t);
-
         if (t) return;
 
         if (datas.day.length == 1) {
@@ -136,9 +134,11 @@ function SignUpComponent({ isOpen, onClose }) {
 
         datas.birthday = datas.year + "-" + datas.month + "-" + datas.day;
 
+        datas.fullName = datas.firstName + " " + datas.lastName;
 
         const backError = await SignUp({
-            firstName: datas.firstName, lastName: datas.lastName, email: datas.email,
+            firstName: datas.firstName, lastName: datas.lastName, 
+            fullName: datas.fullName, email: datas.email,
             birthday: datas.birthday, gender: datas.gender, password: datas.password
         })
 
